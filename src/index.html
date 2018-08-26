@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <title>druaga-like-dungeon-generator</title>
+    <link rel="stylesheet" href="css/main.css">
+    <script defer src="js/main.js"></script>
+</head>
+<body>
+
+<div class="banner" id="bannerContainer" style="">
+    <div class="shade">
+        <h1 class="banner-head">
+            druaga-like-dungeon-generator
+        </h1>
+    </div>
+</div>
+
+<div class="l-content">
+
+    <div class="pure-g information section-title">
+        <h2>Floor</h2>
+    </div>
+
+    <div class="pure-g information">
+        <form class="pure-form widthFull controller">
+            <fieldset>
+                <legend>Dungeon Control</legend>
+
+                <label for="seed">Seed</label>
+                    <input type="range" min="0" max="65000" value="0" id="seed">
+
+                <label for="w">Floor Width</label>
+                <input type="number" id="w" value="17" min="1">
+
+                <label for="h">Floor Height</label>
+                <input type="number" id="h" value="8" min="1">
+
+            </fieldset>
+        </form>
+    </div>
+
+    <div class="pure-g information">
+        <div class="pure-form widthFull mapContainer">
+            <p id="map"></p>
+        </div>
+    </div>
+
+</div>
+
+<div class="footer l-box">
+    <p>
+        2018 Makino Masato
+    </p>
+</div>
+
+
+
+</body>
+</html>
