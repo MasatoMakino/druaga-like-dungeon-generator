@@ -39,7 +39,10 @@ const updateMap = () => {
 
 const updateMapCSS = () => {
   let floorW = parseInt(document.getElementById("floorW").value);
+  floorW = Math.max(floorW, 12);
+
   const map = document.getElementById("mapContainer");
   const fontSize = map.clientWidth / (floorW * 2.37);
+
   map.style.fontSize = fontSize + "px";
 };
