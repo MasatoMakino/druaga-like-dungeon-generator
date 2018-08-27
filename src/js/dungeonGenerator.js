@@ -22,7 +22,7 @@ export default class {
       for (let cX = 0; cX < floorSizeW; cX++) {
         let openLoopFlag = false;
         do {
-          openLoopFlag = this.startCreateWall(cX, cY);
+          openLoopFlag = this.startWall(cX, cY);
         } while (openLoopFlag);
         // document.getElementById("map").innerHTML += this.printDungeon(this.dungeon);
       }
@@ -31,7 +31,14 @@ export default class {
     return this.printDungeon(this.dungeon);
   }
 
-  startCreateWall(x, y) {
+  /**
+   * 壁生成を開始する。
+   * 起点となる柱からまず壁を伸ばす。
+   * @param x
+   * @param y
+   * @returns {*}　生成中のルートに四方を取り囲まれているか否か。取り囲まれた場合は処理を中断してtrueを返す。
+   */
+  startWall(x, y) {
     //既に壁がある場合はスキップ
     if (this.dungeon[y][x] !== -1) {
       // console.log("既に壁があります", x, y);
@@ -69,6 +76,13 @@ export default class {
     }
   }
 
+  /**
+   * 壁を伸ばす
+   * @param pos
+   * @param routeX
+   * @param routeY
+   * @returns {*}
+   */
   createWall(pos, routeX, routeY) {
     //ルート記録
     routeX.push(pos.x);
@@ -110,17 +124,24 @@ export default class {
       return nextPos;
     };
 
-    //閉ループチェック
     let closeLoopFlag = false;
     let nextPos;
     do {
       nextPos = forwardWall();
+      //生成中のルートに衝突しないかを確認する。
       closeLoopFlag = this.checkCloseLoop(nextPos, routeX, routeY);
     } while (closeLoopFlag);
 
     return this.createWall(nextPos, routeX, routeY);
   }
 
+  /**
+   * 生成中のルートに衝突しないかを確認する。
+   * @param nextPos x,y座標を含むオブジェクト
+   * @param routeX 生成中ルート配列
+   * @param routeY
+   * @returns {boolean}
+   */
   checkCloseLoop(nextPos, routeX, routeY) {
     const n = routeX.length;
     for (let i = 0; i < n; i++) {
@@ -131,8 +152,9 @@ export default class {
     }
     return false;
   }
+
   /**
-   * 開ループ判定
+   * 生成中のルートに司法を取り囲まれていないかを確認する。
    * @param x
    * @param y
    * @param routeX
@@ -161,6 +183,12 @@ export default class {
     return hitL && hitR && hitT && hitB;
   }
 
+  /**
+   * 現在生成中のルートをクリアする。
+   * checkOpenLoopで取り囲まれた際の処理。
+   * @param routeX
+   * @param routeY
+   */
   clearRoute(routeX, routeY) {
     // console.log("現在のルートを消去します");
     const n = routeX.length;
@@ -215,6 +243,14 @@ export default class {
     return line;
   }
 
+  /**
+   * 柱がない行を生成する。
+   * @param dungeon
+   * @param lineNum
+   * @param CR
+   * @param space
+   * @returns {string}
+   */
   printDungeonLineFloorAndWall(dungeon, lineNum, CR, space) {
     let line = "";
     const y = (lineNum - 1) / 2;
