@@ -16,7 +16,7 @@ export default class {
 
     this.xor = new xorshift(seed);
 
-    //柱配列を初期化　dangeon[y][x]で状態にアクセス　壁未生成の初期値は-1
+    //柱配列を初期化　dungeon[y][x]で状態にアクセス　壁未生成の初期値は-1
     this.dungeon = Array.from(new Array(floorSizeH), () =>
       new Array(floorSizeW).fill(-1)
     );
