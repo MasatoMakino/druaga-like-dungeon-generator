@@ -12,8 +12,10 @@ window.onload = function() {
 };
 
 const updateMap = () => {
+  const startTime = performance.now(); // 開始時間
   let seed = parseInt(document.getElementById("seed").value);
-  let map = generator.generate(seed);
+  document.getElementById("map").innerHTML = generator.generate(seed);
 
-  document.getElementById("map").innerHTML = map;
+  const endTime = performance.now(); // 終了時間
+  console.log(endTime - startTime); // 何ミリ秒かかったかを表示する
 };

@@ -6,14 +6,11 @@ export default class {
   constructor() {}
 
   generate(seed, floorSizeW = 17, floorSizeH = 8) {
-    const startTime = performance.now(); // 開始時間
-
     //擬似乱数生成器を初期化
-    if (seed === undefined) {
-      console.log("seed値を指定してください");
+    if (seed === undefined || typeof seed !== "number") {
+      console.log("seed値を整数値で指定してください");
       return "";
     }
-
     this.xor = new xorshift(seed);
 
     //柱配列を初期化　dungeon[y][x]で状態にアクセス　壁未生成の初期値は-1
@@ -30,9 +27,6 @@ export default class {
         // document.getElementById("map").innerHTML += this.printDungeon(this.dungeon);
       }
     }
-
-    const endTime = performance.now(); // 終了時間
-    console.log(endTime - startTime); // 何ミリ秒かかったかを表示する
 
     return this.printDungeon(this.dungeon);
   }
