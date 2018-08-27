@@ -153,10 +153,11 @@ export default class {
       if (routeX[i] === x && routeY[i] === y - 1) hitT = true;
       if (routeX[i] === x && routeY[i] === y + 1) hitB = true;
     }
-
+    /*
     if (hitL && hitR && hitT && hitB) {
-      // console.log("開ループが発生しました");
+      console.log("開ループが発生しました");
     }
+    */
     return hitL && hitR && hitT && hitB;
   }
 
@@ -233,12 +234,12 @@ export default class {
       let x = i / 2 - 1;
       //上の柱から下方向に壁が伸びている場合
       if (y - 1 >= 0 && dungeon[y - 1][x] === 2) {
-        line += "┃";
+        line += "│";
         continue;
       }
       //下の柱から上方向に壁が伸びている場合
       if (y < dungeon.length && dungeon[y][x] === 0) {
-        line += "┃";
+        line += "│";
         continue;
       }
       line += space;
@@ -270,17 +271,16 @@ export default class {
       //柱の描画
       if (i % 2 === 0) {
         line += "●";
-        //   line += dungeon[y][x];
         continue;
       }
 
       //壁の描画
       if (x - 1 >= 0 && dungeon[y][x - 1] === 1) {
-        line += "━";
+        line += "─";
         continue;
       }
       if (x < dungeon[0].length && dungeon[y][x] === 3) {
-        line += "━";
+        line += "─";
         continue;
       }
 

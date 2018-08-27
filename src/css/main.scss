@@ -42,22 +42,23 @@
 .controller {
   input[type="range"] {
     -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
     width: 45%;
-    height: 6px;
-    border-radius: 3px;
+    height: 24px;
     background: #aaa;
     outline: none;
     opacity: 0.8;
-    -webkit-transition: 0.2s;
-    transition: opacity 0.2s;
     vertical-align: middle;
 
     &::-webkit-slider-thumb {
       -webkit-appearance: none;
+      -moz-appearance: none;
       appearance: none;
+
       width: 24px;
       height: 24px;
-      border-radius: 50%;
       background: #e80;
       cursor: pointer;
     }
