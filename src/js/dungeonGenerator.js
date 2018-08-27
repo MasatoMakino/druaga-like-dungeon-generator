@@ -6,14 +6,15 @@ export default class {
   constructor() {}
 
   generate(seed, floorSizeW = 17, floorSizeH = 8) {
+    const startTime = performance.now(); // 開始時間
+
     //擬似乱数生成器を初期化
     if (seed === undefined) {
       console.log("seed値を指定してください");
       return "";
     }
+
     this.xor = new xorshift(seed);
-    console.log(this.xor.rnd(), this.xor.rnd(), this.xor.rnd());
-    console.log(this.xor.rnd() % 16, this.xor.rnd() % 16, this.xor.rnd() % 16);
 
     //柱配列を初期化　dangeon[y][x]で状態にアクセス　壁未生成の初期値は-1
     this.dungeon = Array.from(new Array(floorSizeH), () =>
@@ -25,27 +26,28 @@ export default class {
         let openLoopFlag = false;
         do {
           openLoopFlag = this.startCreateWall(cX, cY);
-          console.log(openLoopFlag);
         } while (openLoopFlag);
+        // document.getElementById("map").innerHTML += this.printDungeon(this.dungeon);
       }
     }
-    console.log(this.dungeon);
 
-    let map = this.printDungeon(this.dungeon);
-    console.log(map);
-    return map;
+    const endTime = performance.now(); // 終了時間
+    console.log(endTime - startTime); // 何ミリ秒かかったかを表示する
+
+    return this.printDungeon(this.dungeon);
   }
 
   startCreateWall(x, y) {
     //既に壁がある場合はスキップ
     if (this.dungeon[y][x] !== -1) {
+      // console.log("既に壁があります", x, y);
       return false;
     }
 
     let routeX = [];
     let routeY = [];
-    routeX[0] = x;
-    routeY[0] = y;
+    routeX.push(x);
+    routeY.push(y);
 
     //壁生成(0:上,1:右,2:下,3:左)
     this.dungeon[y][x] = this.xor.rnd() % 4;
@@ -58,7 +60,7 @@ export default class {
    * 方向から次の座標を取得する
    * @param cX
    * @param cY
-   * @returns {x,y}
+   * @returns {*}
    */
   getNextPosition(cX, cY) {
     switch (this.dungeon[cY][cX]) {
@@ -74,6 +76,10 @@ export default class {
   }
 
   createWall(pos, routeX, routeY) {
+    //ルート記録
+    routeX.push(pos.x);
+    routeY.push(pos.y);
+
     //開ループ判定
     if (this.checkOpenLoop(pos.x, pos.y, routeX, routeY)) {
       this.clearRoute(routeX, routeY);
@@ -89,16 +95,43 @@ export default class {
       return false;
     }
 
-    const direction = this.xor.rnd() % 3;
-    // const
+    const forwardWall = () => {
+      //壁を伸ばす方向を決める
+      //(0:進行方向左、1:まっすぐ、2:進行方向右)の方向に壁を伸ばす
+      const direction = this.xor.rnd() % 3;
 
-    return false;
+      //一つ手前のルートを取り出す。
+      const pastIndex = routeX.length - 2;
+      const past = this.dungeon[routeY[pastIndex]][routeX[pastIndex]];
+
+      //方向と手前の壁の方向を合成して壁を追加。
+      let next = (direction + past - 1) % 4;
+      if (next === -1) {
+        next = 3;
+      }
+      this.dungeon[pos.y][pos.x] = next;
+
+      //次の柱を取得
+      let nextPos = this.getNextPosition(pos.x, pos.y);
+      return nextPos;
+    };
+
+    //閉ループチェック
+    let closeLoopFlag = false;
+    let nextPos;
+    do {
+      nextPos = forwardWall();
+      closeLoopFlag = this.checkCloseLoop(nextPos, routeX, routeY);
+    } while (closeLoopFlag);
+
+    return this.createWall(nextPos, routeX, routeY);
   }
 
-  checkCloseLoop(nextX, nextY, routeX, routeY) {
+  checkCloseLoop(nextPos, routeX, routeY) {
     const n = routeX.length;
     for (let i = 0; i < n; i++) {
-      if (routeX[i] === nextX && routeY[i] === nextY) {
+      if (routeX[i] === nextPos.x && routeY[i] === nextPos.y) {
+        // console.log("閉ループが発生しました", nextPos, routeX, routeY);
         return true;
       }
     }
@@ -128,13 +161,13 @@ export default class {
     }
 
     if (hitL && hitR && hitT && hitB) {
-      console.log("開ループが発生しました");
+      // console.log("開ループが発生しました");
     }
     return hitL && hitR && hitT && hitB;
   }
 
   clearRoute(routeX, routeY) {
-    console.log("現在のルートを消去します");
+    // console.log("現在のルートを消去します");
     const n = routeX.length;
     for (let i = 0; i < n; i++) {
       this.dungeon[routeY[i]][routeX[i]] = -1;
@@ -145,37 +178,49 @@ export default class {
    * ダンジョンマップ配列からhtml用のstringを生成する
    * @param dungeon
    */
-  printDungeon(dungeon) {
+  printDungeon(dungeon, CR = "<br>", space = "&nbsp;") {
     let map = "";
 
     this.mapH = dungeon.length * 2 + 1 + 2;
     this.mapW = dungeon[0].length * 2 + 1 + 2;
 
     for (let i = 0; i < this.mapH; i++) {
-      const line = this.printDungeonLine(dungeon, i);
-      map += line;
+      map += this.printDungeonLine(dungeon, i, CR, space);
     }
     return map;
   }
 
-  printDungeonLine(dungeon, lineNum) {
+  /**
+   * string一行分を生成する
+   * @param dungeon
+   * @param lineNum
+   * @param CR 改行コード
+   * @param space 空白フロアの文字
+   * @returns {*} 生成された文字列
+   */
+  printDungeonLine(dungeon, lineNum, CR, space) {
     if (lineNum === 0 || lineNum === this.mapH - 1) {
-      return this.printDungeonLineOutWall();
-    } else if (lineNum % 2 == 0) {
-      return this.printDungeonLinePillarAndWall(dungeon, lineNum);
+      return this.printDungeonLineOutWall(CR);
+    } else if (lineNum % 2 === 0) {
+      return this.printDungeonLinePillarAndWall(dungeon, lineNum, CR, space);
     } else {
-      return this.printDungeonLineFloorAndWall(dungeon, lineNum);
+      return this.printDungeonLineFloorAndWall(dungeon, lineNum, CR, space);
     }
   }
 
-  printDungeonLineOutWall() {
+  /**
+   * 外壁の行を生成する
+   * @param CR 改行コード
+   * @returns {string}
+   */
+  printDungeonLineOutWall(CR) {
     let wall = "■️";
     let line = wall.repeat(this.mapW);
-    line += "<br>";
+    line += CR;
     return line;
   }
 
-  printDungeonLineFloorAndWall(dungeon, lineNum) {
+  printDungeonLineFloorAndWall(dungeon, lineNum, CR, space) {
     let line = "";
     const y = (lineNum - 1) / 2;
 
@@ -187,7 +232,7 @@ export default class {
       }
 
       if (i % 2 === 1) {
-        line += "&nbsp;";
+        line += space;
         continue;
       }
 
@@ -202,14 +247,20 @@ export default class {
         line += "┃";
         continue;
       }
-      line += "&nbsp;";
+      line += space;
     }
 
-    line += "<br>";
+    line += CR;
     return line;
   }
 
-  printDungeonLinePillarAndWall(dungeon, lineNum) {
+  /**
+   * 柱のある行を生成する
+   * @param dungeon
+   * @param lineNum
+   * @returns {string}
+   */
+  printDungeonLinePillarAndWall(dungeon, lineNum, CR, space) {
     let line = "";
     const y = lineNum / 2 - 1;
 
@@ -220,14 +271,16 @@ export default class {
         continue;
       }
 
+      let x = (i - 1) / 2;
+
       //柱の描画
       if (i % 2 === 0) {
         line += "●";
+        //   line += dungeon[y][x];
         continue;
       }
 
       //壁の描画
-      let x = (i - 1) / 2;
       if (x - 1 >= 0 && dungeon[y][x - 1] === 1) {
         line += "━";
         continue;
@@ -237,10 +290,10 @@ export default class {
         continue;
       }
 
-      line += "&nbsp;";
+      line += space;
     }
 
-    line += "<br>";
+    line += CR;
     return line;
   }
 }
