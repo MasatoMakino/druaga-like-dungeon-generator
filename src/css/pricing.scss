@@ -48,10 +48,6 @@ p {
  */
 
 .banner {
-  background: no-repeat fixed;
-  background-size: cover;
-
-  height: 200px;
   width: 100%;
   margin-bottom: 3em;
 }
@@ -62,7 +58,7 @@ p {
 
   text-align: center;
   display: table;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: #e80;
 }
 
 .banner-head {
@@ -70,7 +66,7 @@ p {
   vertical-align: middle;
   margin-bottom: 0;
   font-size: 2em;
-  color: white;
+  color: #fff;
   font-weight: 500;
   text-shadow: 0 1px 1px black;
 }
@@ -193,12 +189,22 @@ p {
 }
 
 .footer {
-  background: #111;
-  color: #888;
-  text-align: center;
-}
-.footer a {
-  color: #ddd;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  box-shadow: 0 -6px 12px rgba(0, 0, 0, 0.1);
+
+  background: #fff;
+
+  a {
+    color: #ddd;
+  }
+
+  #copyright {
+    text-align: center;
+    color: #888;
+    background: #111;
+  }
 }
 
 /*
@@ -221,7 +227,7 @@ p {
  */
 @media (min-width: 480px) {
   .banner {
-    height: 280px;
+    height: 186px;
   }
   .banner-head {
     font-size: 3em;

@@ -23,8 +23,13 @@
   margin-bottom: 36px;
 }
 
-.mapContainer {
+.footerMargin {
+  margin-bottom: 240px;
+}
+
+#mapContainer {
   font-size: 24px;
+  text-align: center;
 }
 #map {
   font-family: MeiryoKe_Gothic, "Ricty Diminished", "Courier New", Courier,
@@ -38,11 +43,11 @@
   input[type="range"] {
     -webkit-appearance: none;
     width: 45%;
-    height: 16px;
-    border-radius: 8px;
-    background: #d3d3d3;
+    height: 6px;
+    border-radius: 3px;
+    background: #aaa;
     outline: none;
-    opacity: 0.7;
+    opacity: 0.8;
     -webkit-transition: 0.2s;
     transition: opacity 0.2s;
     vertical-align: middle;
@@ -53,7 +58,7 @@
       width: 24px;
       height: 24px;
       border-radius: 50%;
-      background: #4caf50;
+      background: #e80;
       cursor: pointer;
     }
   }
