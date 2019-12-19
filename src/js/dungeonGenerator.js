@@ -201,7 +201,7 @@ export default class {
    * ダンジョンマップ配列からhtml用のstringを生成する
    * @param dungeon
    */
-  printDungeon(dungeon, CR = "<br>", space = "&nbsp;") {
+  printDungeon(dungeon, CR = "<br>", space = "&emsp;") {
     let map = "";
 
     this.mapH = dungeon.length * 2 + 1 + 2;
