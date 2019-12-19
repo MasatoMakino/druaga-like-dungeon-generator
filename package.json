@@ -24,15 +24,15 @@
     "webpack-cli": "^3.3.10"
   },
   "scripts": {
-    "publish": "npm-run-all -s sass:release copy:html javascript:production server",
+    "publish": "npm-run-all -s sass:release copy:html javascript:production watch:server",
     "watch": "npm-run-all -p watch:*",
-    "sass:nodesass": "node-sass --importer node_modules/node-sass-package-importer/dist/cli.js -o ./dist/css src/css/main.scss",
+    "sass:nodesass": "node-sass --importer node_modules/node-sass-package-importer/dist/cli.js -o ./docs/css src/css/main.scss",
     "sass:dev": "npm run sass:nodesass -- --output-style expanded",
     "sass:release": "npm run sass:nodesass -- --output-style compressed",
     "watch:sass": "npm run sass:dev -- -w",
-    "copy:html": "cpx ./src/**/*.html ./dist",
+    "copy:html": "cpx ./src/**/*.html ./docs",
     "watch:html": "npm run copy:html -- -w",
-    "watch:server": "http-server ./dist/ -o",
+    "watch:server": "http-server ./docs/ -o",
     "javascript:dev": "webpack --config webpack.config.script.js --mode development",
     "watch:javascript": "npm run javascript:dev -- --watch",
     "javascript:production": "webpack --config webpack.config.script.js --mode production --progress --color"
