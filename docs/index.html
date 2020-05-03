@@ -1,57 +1,66 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="" />
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
     <title>druaga-like-dungeon-generator</title>
-    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/main.css">
     <script defer src="js/main.js"></script>
-  </head>
-  <body>
-    <div class="banner" id="bannerContainer" style="">
-      <div class="shade">
+</head>
+<body>
+
+<div class="banner" id="bannerContainer" style="">
+    <div class="shade">
         <h1 class="banner-head">
-          druaga-like-dungeon-generator
+            druaga-like-dungeon-generator
         </h1>
-      </div>
     </div>
+</div>
 
-    <div class="l-content">
-      <div class="pure-g information section-title">
+<div class="l-content">
+
+    <div class="pure-g information section-title">
         <h2>Floor</h2>
-      </div>
+    </div>
 
-      <div class="pure-g information footerMargin">
-        <div id="mapContainer" class="pure-form widthFull">
-          <p id="map"></p>
+    <div class="pure-g information footerMargin">
+        <div id="mapContainer" class="pure-form widthFull" >
+            <p id="map"></p>
         </div>
-      </div>
     </div>
 
-    <div class="footer">
-      <div class="pure-g information sectionMargin">
+
+
+</div>
+
+<div class="footer">
+    <div class="pure-g information sectionMargin">
         <form class="pure-form widthFull controller">
-          <fieldset>
-            <legend>Dungeon Control</legend>
+            <fieldset>
+                <legend>Dungeon Control</legend>
 
-            <label for="seed">Seed</label>
-            <input type="range" min="0" max="65000" value="0" id="seed" />
+                <label for="seed">Seed</label>
+                <input type="range" min="0" max="65000" value="0" id="seed">
 
-            <label for="floorW">Floor Width</label>
-            <input type="number" id="floorW" value="17" min="1" max="40" />
+                <label for="floorW">Floor Width</label>
+                <input type="number" id="floorW" value="17" min="1" max="40">
 
-            <label for="floorH">Floor Height</label>
-            <input type="number" id="floorH" value="8" min="1" />
-          </fieldset>
+                <label for="floorH">Floor Height</label>
+                <input type="number" id="floorH" value="8" min="1">
+
+            </fieldset>
         </form>
-      </div>
-
-      <div id="copyright" class="l-box">
-        <p>
-          2018 Makino Masato
-        </p>
-      </div>
     </div>
-  </body>
+
+    <div id="copyright" class="l-box">
+        <p>
+            2018 Makino Masato
+        </p>
+    </div>
+</div>
+
+
+
+</body>
 </html>
