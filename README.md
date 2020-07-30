@@ -110,7 +110,7 @@ If there are walls on all four sides of a pillar, redrawing the direction does n
 
 In this case, the generator will cancel the entire route and start over.
 
-## About source code
+## How to build
 
 - Clone or download the source from Github.
 - `npm install`
