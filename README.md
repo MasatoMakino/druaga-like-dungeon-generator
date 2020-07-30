@@ -1,6 +1,6 @@
 # druaga-like-dungeon-generator
 
-> A dungeon map generator based on [The Tower of Druaga](https://en.wikipedia.org/wiki/The_Tower_of_Druaga)
+> Dungeon map generator based on [The Tower of Druaga](https://en.wikipedia.org/wiki/The_Tower_of_Druaga)
 
 ## Demo
 
