@@ -60,7 +60,7 @@ The floor map of the Tower of Druaga consists of 4 elements.
 
 Outer walls enclose the floor.
 Tile allows characters to come and go.
-Pillars are evenly spaced and the walls grow from here.
+Pillars stand evenly spaced, and the walls extend from here.
 
 The Tower of Druaga's algorithm generates a floor map by following these steps.
 
