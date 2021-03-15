@@ -24,8 +24,11 @@ module.exports = (env, argv) => {
         }
       ]
     },
-    plugins: [new webpack.ProvidePlugin({})],
-    devtool: argv.mode === "production" ? "" : "inline-source-map"
+    plugins: [new webpack.ProvidePlugin({})]
   };
+  if(argv.mode !== "production"){
+    config.devtool =  "inline-source-map"
+  }
+
   return config;
 };
