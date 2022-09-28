@@ -1,6 +1,6 @@
-@import "~purecss/build/pure-min.css";
-@import "~purecss/build/grids-responsive-min.css";
-@import "pricing";
+@use "pure-min.css";
+@use "grids-responsive-min.css";
+@use "pricing";
 
 .pure-g {
   letter-spacing: 0;
