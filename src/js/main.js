@@ -1,8 +1,9 @@
+import "../css/main.scss";
 import DungeonGenerator from "./dungeonGenerator.js";
 
 var generator;
 
-window.onload = function() {
+window.onload = function () {
   generator = new DungeonGenerator();
   updateMapCSS();
   updateMap();
