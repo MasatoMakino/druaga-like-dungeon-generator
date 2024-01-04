@@ -95,7 +95,6 @@ describe("dungeonGenerator", () => {
     const start = [1, 1]; // Assuming the top-left tile is always accessible
     const visited = isAccessibleFrom(start, dungeonArray);
 
-    console.log(dungeonArray);
     for (let y = 0; y < dungeonArray.length; y++) {
       for (let x = 0; x < dungeonArray[y].length; x++) {
         if (dungeonArray[y][x] === " ") {
