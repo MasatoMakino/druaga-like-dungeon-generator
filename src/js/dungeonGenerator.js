@@ -59,9 +59,9 @@ export default class {
 
   /**
    * 方向から次の座標を取得する
-   * @param cX
-   * @param cY
-   * @returns {*}
+   * @param {number}cX 現在のx座標
+   * @param {number}cY 現在のy座標
+   * @returns {x:number, y:number}
    */
   getNextPosition(cX, cY) {
     switch (this.dungeon[cY][cX]) {
@@ -245,10 +245,10 @@ export default class {
 
   /**
    * 柱がない行を生成する。
-   * @param dungeon
-   * @param lineNum
-   * @param CR
-   * @param space
+   * @param dungeon ダンジョンマップ配列
+   * @param lineNum ダンジョンマップの行番号
+   * @param CR 改行コード
+   * @param space 空白フロアの文字
    * @returns {string}
    */
   printDungeonLineFloorAndWall(dungeon, lineNum, CR, space) {
@@ -287,8 +287,10 @@ export default class {
 
   /**
    * 柱のある行を生成する
-   * @param dungeon
-   * @param lineNum
+   * @param {number[][]} dungeon
+   * @param {number} lineNum
+   * @param {string} CR
+   * @param {string} space
    * @returns {string}
    */
   printDungeonLinePillarAndWall(dungeon, lineNum, CR, space) {

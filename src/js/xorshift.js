@@ -1,12 +1,21 @@
 "use strict";
 
+/**
+ * Xorshift | シード付き擬似乱数
+ */
 export default class {
-  // Xorshift | シード付き擬似乱数
+  /**
+   * コンストラクタ
+   * @param {number} n - シード値
+   */
   constructor(n) {
     this.seed(n);
   }
 
-  // シード
+  /**
+   * シードを設定する
+   * @param {number} n - シード値
+   */
   seed(n) {
     this.x = 123456789;
     this.y = 362436069;
@@ -17,6 +26,10 @@ export default class {
     }
   }
 
+  /**
+   * 擬似乱数を生成する
+   * @returns {number} - 生成された擬似乱数
+   */
   rnd() {
     const t = this.x ^ (this.x << 11);
     this.x = this.y;
