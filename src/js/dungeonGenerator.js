@@ -7,7 +7,7 @@ export default class {
 
   generate(seed, floorSizeW = 17, floorSizeH = 8) {
     //擬似乱数生成器を初期化
-    if (seed === undefined || typeof seed !== "number") {
+    if (seed == null || isNaN(seed) || typeof seed !== "number") {
       console.log("seed値を整数値で指定してください");
       return "";
     }
@@ -258,7 +258,7 @@ export default class {
     for (let i = 0; i < this.mapW; i++) {
       //外壁
       if (i === 0 || i === this.mapW - 1) {
-        line += "■";
+        line += "■️";
         continue;
       }
 
@@ -298,7 +298,7 @@ export default class {
     for (let i = 0; i < this.mapW; i++) {
       //外壁
       if (i === 0 || i === this.mapW - 1) {
-        line += "■";
+        line += "■️";
         continue;
       }
 
