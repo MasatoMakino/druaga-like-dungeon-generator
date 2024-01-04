@@ -112,7 +112,7 @@ In this case, the generator will cancel the entire route and start over.
 
 ## How to build
 
-- Clone or download the source from Github.
+- Clone or download the source from GitHub.
 - `npm install`
 - `npm run publish`
 - Files output to `docs` folder, the local http server will start.
