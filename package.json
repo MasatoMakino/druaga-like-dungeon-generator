@@ -19,7 +19,7 @@
     "purecss": "^3.0.0",
     "sass": "^1.72.0",
     "sass-loader": "^13.3.3",
-    "serve": "^14.2.1",
+    "serve": "^14.2.3",
     "style-loader": "^3.3.4",
     "vitest": "^1.2.2",
     "webpack": "^5.90.3",
