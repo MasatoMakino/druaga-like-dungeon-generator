@@ -5,7 +5,7 @@
   "author": "Masato Makino",
   "license": "MIT",
   "devDependencies": {
-    "@babel/cli": "^7.24.1",
+    "@babel/cli": "^7.24.6",
     "@babel/core": "^7.24.6",
     "@babel/preset-env": "^7.24.6",
     "@vitest/coverage-v8": "^1.6.0",
