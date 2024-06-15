@@ -31,9 +31,9 @@
     "publish": "npm-run-all -s javascript:production watch:server",
     "watch": "npm-run-all -p watch:*",
     "watch:server": "serve ./docs/",
-    "javascript:dev": "webpack --config webpack.config.script.cjs --mode development",
+    "javascript:dev": "webpack --config webpack.config.script.js --mode development",
     "watch:javascript": "npm run javascript:dev -- --watch",
-    "javascript:production": "webpack --config webpack.config.script.cjs --mode production --progress --color",
+    "javascript:production": "webpack --config webpack.config.script.js --mode production --progress --color",
     "prepare": "husky"
   },
   "lint-staged": {

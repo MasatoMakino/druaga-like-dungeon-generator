@@ -1,8 +1,12 @@
 "use strict";
-const webpack = require("webpack");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+import path from "path";
+import { fileURLToPath } from "url";
+import webpack from "webpack";
+import HtmlWebpackPlugin from "html-webpack-plugin";
 
-module.exports = (env, argv) => {
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+export default (env, argv) => {
   const config = {
     entry: {
       main: "./src/js/main.js",
