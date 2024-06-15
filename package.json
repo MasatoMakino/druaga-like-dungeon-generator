@@ -4,6 +4,7 @@
   "main": "index.js",
   "author": "Masato Makino",
   "license": "MIT",
+  "type": "module",
   "devDependencies": {
     "@babel/cli": "^7.24.6",
     "@babel/core": "^7.24.6",
