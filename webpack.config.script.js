@@ -3,6 +3,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import webpack from "webpack";
 import HtmlWebpackPlugin from "html-webpack-plugin";
+import { NodePackageImporter } from "sass";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -42,7 +43,7 @@ export default (env, argv) => {
               loader: "sass-loader",
               options: {
                 sassOptions: {
-                  includePaths: ["node_modules/purecss/build"],
+                  pkgImporter: new NodePackageImporter(),
                 },
               },
             },

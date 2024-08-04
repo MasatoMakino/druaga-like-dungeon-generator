@@ -1,5 +1,5 @@
-@use "pure-min.css";
-@use "grids-responsive-min.css";
+@use "pkg:purecss/build/pure-min.css";
+@use "pkg:purecss/build/grids-responsive-min.css";
 @use "pricing";
 
 .pure-g {
