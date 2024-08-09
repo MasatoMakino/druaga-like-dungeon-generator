@@ -3,6 +3,9 @@ name: Publish github pages
 on:
   push:
     branches: [main]
+  pull_request:
+    branches: [main]
+
 
 jobs:
   publish:
@@ -20,6 +23,7 @@ jobs:
       - run: npm run javascript:production
       - name: Deploy Github pages
         uses: peaceiris/actions-gh-pages@v4
+        if: ${{ github.ref == 'refs/heads/main' }}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./docs
