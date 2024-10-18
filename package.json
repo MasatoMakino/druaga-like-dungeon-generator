@@ -19,7 +19,7 @@
     "prettier": "^3.3.3",
     "purecss": "^3.0.0",
     "sass": "^1.80.1",
-    "sass-embedded": "^1.79.5",
+    "sass-embedded": "^1.80.2",
     "sass-loader": "^16.0.2",
     "serve": "^14.2.4",
     "style-loader": "^4.0.0",
