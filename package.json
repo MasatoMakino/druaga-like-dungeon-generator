@@ -7,7 +7,7 @@
   "type": "module",
   "devDependencies": {
     "@babel/cli": "^7.27.2",
-    "@babel/core": "^7.27.7",
+    "@babel/core": "^7.28.0",
     "@babel/preset-env": "^7.27.2",
     "@vitest/coverage-v8": "^3.2.4",
     "babel-loader": "^10.0.0",
