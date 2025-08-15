@@ -6,7 +6,7 @@
   "license": "MIT",
   "type": "module",
   "devDependencies": {
-    "@babel/cli": "^7.28.0",
+    "@babel/cli": "^7.28.3",
     "@babel/core": "^7.28.3",
     "@babel/preset-env": "^7.28.3",
     "@vitest/coverage-v8": "^3.2.4",
