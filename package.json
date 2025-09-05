@@ -23,7 +23,7 @@
     "sass-loader": "^16.0.5",
     "serve": "^14.2.5",
     "style-loader": "^4.0.0",
-    "webpack": "^5.100.2",
+    "webpack": "^5.101.3",
     "webpack-cli": "^6.0.1"
   },
   "scripts": {
